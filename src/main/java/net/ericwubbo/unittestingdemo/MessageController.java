@@ -18,4 +18,12 @@ public class MessageController {
         message.setTitle(capitalizedTitle);
         return message;
     }
+
+    @PostMapping("gigi-ize")
+    public Message gigiize(@RequestBody Message message) {
+        var gigiizedTitle = messageService.gigiize(message.getTitle());
+        message.setTitle(gigiizedTitle);
+        return message;
+    }
+
 }

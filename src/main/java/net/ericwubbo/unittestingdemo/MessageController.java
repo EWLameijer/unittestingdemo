@@ -23,6 +23,6 @@ public class MessageController {
     public Message gigiize(@RequestBody Message message) {
         var gigiizedTitle = messageService.gigiize(message.getTitle());
         message.setTitle(gigiizedTitle);
-        return message;
+        return messageService.save(message);
     }
 }

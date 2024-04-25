@@ -1,9 +1,13 @@
 package net.ericwubbo.unittestingdemo;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class MessageService {
+    private final MessageRepository messageRepository;
+
     public String titleize(String originalText) {
         var result = new StringBuilder();
         for (int index = 0; index < originalText.length(); index++) {
@@ -32,5 +36,9 @@ public class MessageService {
             }
         }
         return result.toString();
+    }
+
+    public Message save(Message message) {
+        return messageRepository.save(message);
     }
 }

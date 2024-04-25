@@ -22,8 +22,8 @@ public class IntegrationTests {
         messageRepository.save(message);
 
         // ASSERT
-        assertNull(message.getId());
-        assertEquals(message.getTitle(), "hello");
+        assertNotNull(message.getId());
+        assertEquals(message.getTitle(), "Hello");
     }
 
 }

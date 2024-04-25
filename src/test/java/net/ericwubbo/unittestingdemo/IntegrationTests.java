@@ -53,7 +53,7 @@ public class IntegrationTests {
         mvc.perform(post("/gigi-ize") // gigi-ize does not work
                         .contentType(MediaType.APPLICATION_JSON).content(asJsonString(ej)))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.title", is("x")));
+                .andExpect(jsonPath("$.title", is("EfFeCtIvE jAvA")));
     }
 
     // DEMO: How to deal with array results

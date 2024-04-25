@@ -1,13 +1,15 @@
 package net.ericwubbo.unittestingdemo;
 
-import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import static org.junit.jupiter.api.Assertions.*;
 
-@RequiredArgsConstructor
+@SpringBootTest
 public class MessageServiceTest {
 
-    private final MessageService messageService;
+    @Autowired
+    private MessageService messageService;
 
     @Test
     public void titleizeShouldCapitalizeCorrectly() {
@@ -19,7 +21,6 @@ public class MessageServiceTest {
         var actualOutput = messageService.titleize(input);
 
         // ASSERT
-        org.junit.jupiter.api.Assertions.assertEquals(expectedOutput, actualOutput);
+        assertEquals(expectedOutput, actualOutput);
     }
-
 }

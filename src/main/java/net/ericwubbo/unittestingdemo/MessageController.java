@@ -25,5 +25,4 @@ public class MessageController {
         message.setTitle(gigiizedTitle);
         return message;
     }
-
 }

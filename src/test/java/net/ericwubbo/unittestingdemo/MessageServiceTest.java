@@ -1,11 +1,11 @@
 package net.ericwubbo.unittestingdemo;
 
-import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 // @RequiredArgsConstructor does NOT work here, "No ParameterResolver registered for parameter" need @Autowired
@@ -32,9 +32,14 @@ public class MessageServiceTest {
 
     // example: see https://www.baeldung.com/parameterized-tests-junit-5
     @ParameterizedTest
-    @CsvSource(value = {"test:test", "tEst:test", "Java:java"}, delimiter = ':')
+    @CsvSource(value = {"test:TeSt", "TEST:TeSt", "the lord of the rings:ThE lOrD oF tHe RiNgS"}, delimiter = ':')
     void gigiizatiob_should_work_correctly(String input, String expected) {
+        // ARRANGE (done by @CsvSource)
+
+        // ACT
         String actualValue = messageService.gigiize(input);
+
+        // ASSERT
         assertEquals(expected, actualValue);
     }
 }

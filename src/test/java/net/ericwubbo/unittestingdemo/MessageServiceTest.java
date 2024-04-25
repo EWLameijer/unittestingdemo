@@ -28,4 +28,13 @@ public class MessageServiceTest {
         // ASSERT
         assertEquals(expectedOutput, actualOutput);
     }
+
+
+    // example: see https://www.baeldung.com/parameterized-tests-junit-5
+    @ParameterizedTest
+    @CsvSource(value = {"test:test", "tEst:test", "Java:java"}, delimiter = ':')
+    void gigiizatiob_should_work_correctly(String input, String expected) {
+        String actualValue = messageService.gigiize(input);
+        assertEquals(expected, actualValue);
+    }
 }

@@ -60,7 +60,7 @@ public class IntegrationTests {
         String id = JsonPath.read(result.andReturn().getResponse().getContentAsString(), "$.id");
 
         var retrievedFromDb = mvc.perform(get("/" + id));
-        retrievedFromDb.andExpect(jsonPath("$.title", is("EFFeCtIvE jAvA")));
+        retrievedFromDb.andExpect(jsonPath("$.title", is("EfFeCtIvE jAvA")));
     }
 
     // DEMO: How to deal with array results
@@ -73,7 +73,6 @@ public class IntegrationTests {
 //                .andExpect(jsonPath("$", hasSize(1)))
 //                .andExpect(jsonPath("$[0].name", is("x")));
 //    }
-
 
     private static String asJsonString(final Object obj) {
         try {

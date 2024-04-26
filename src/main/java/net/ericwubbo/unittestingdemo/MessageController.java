@@ -1,16 +1,23 @@
 package net.ericwubbo.unittestingdemo;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
 public class MessageController {
 
     final MessageService messageService;
+
+    final MessageRepository messageRepository;
+
+    @GetMapping("{id}")
+    public ResponseEntity<Message> getById(@PathVariable UUID id) {
+        return messageRepository.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+    }
 
     @PostMapping
     public Message capitalize(@RequestBody Message message) {

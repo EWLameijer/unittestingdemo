@@ -1,6 +1,7 @@
 package net.ericwubbo.unittestingdemo;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.jayway.jsonpath.JsonPath;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
@@ -50,10 +52,15 @@ public class IntegrationTests {
     public void test_that_gigiize_saves_a_message() throws Exception {
         Message ej = new Message("effective java");
 
-        mvc.perform(post("/gigi-ize") // gigi-ize does not work
-                        .contentType(MediaType.APPLICATION_JSON).content(asJsonString(ej)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.title", is("EfFeCtIvE jAvA")));
+        var result = mvc.perform(post("/gigi-ize") // gigi-ize does not work
+                .contentType(MediaType.APPLICATION_JSON).content(asJsonString(ej)));
+
+        result.andExpect(status().isOk()).andExpect(jsonPath("$.title", is("EfFeCtIvE jAvA")));
+
+        String id = JsonPath.read(result.andReturn().getResponse().getContentAsString(), "$.id");
+
+        var retrievedFromDb = mvc.perform(get("/" + id));
+        retrievedFromDb.andExpect(jsonPath("$.title", is("EFFeCtIvE jAvA")));
     }
 
     // DEMO: How to deal with array results

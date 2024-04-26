@@ -8,6 +8,14 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+// VOOR COVERAGE
+// maak een configuratie aan (bv MessageServiceTest)
+// Via menu (Run>Run X with coverage)
+// Run menu heeft ook een Show Coverage Data (Ctrl+Alt+F6)
+// Branch coverage: Ga naar edit configuration (waar je zegt dat je het runt als applicatie)
+// -> Edit Configuration -> Code Coverage (Modify)
+// Noot: werkt nog niet met Optional/lambda
+
 // @RequiredArgsConstructor does NOT work here, "No ParameterResolver registered for parameter" need @Autowired
 
 @SpringBootTest

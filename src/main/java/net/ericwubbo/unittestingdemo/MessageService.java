@@ -2,18 +2,18 @@ package net.ericwubbo.unittestingdemo;
 
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.List;
+
 @Service
 public class MessageService {
-    public String titleize(String originalText) {
-        var result = new StringBuilder();
-        for (int index=0; index < originalText.length(); index++) {
-            var currentChar = originalText.charAt(index);
-            if (index == 0) result.append(Character.toUpperCase(currentChar));
-            else {
-                if (Character.isWhitespace(originalText.charAt(index - 1))) result.append(Character.toUpperCase(currentChar));
-                else result.append(currentChar);
-            }
-        }
-        return result.toString();
+    public String toTitleCase(String originalText) {
+        List<String> capitalizedWords = Arrays.stream(originalText.split("\\s+")).map(this::capitalize).toList();
+        return String.join(" ", capitalizedWords);
+    }
+
+    private String capitalize(String word) {
+        if (word == null || word.isEmpty()) return "";
+        return Character.toUpperCase(word.charAt(0)) + word.substring(1);
     }
 }

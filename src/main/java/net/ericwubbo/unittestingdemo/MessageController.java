@@ -14,7 +14,7 @@ public class MessageController {
 
     @PostMapping
     public Message capitalize(@RequestBody Message message) {
-        var capitalizedTitle = messageService.titleize(message.getTitle());
+        var capitalizedTitle = messageService.toTitleCase(message.getTitle());
         message.setTitle(capitalizedTitle);
         return message;
     }

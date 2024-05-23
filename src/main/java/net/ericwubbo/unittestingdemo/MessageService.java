@@ -7,7 +7,7 @@ import java.util.List;
 
 @Service
 public class MessageService {
-    public String titleCaseOf(String originalText) {
+    public String toTitleCase(String originalText) {
         List<String> capitalizedWords = Arrays.stream(originalText.split("\\s+")).map(this::capitalize).toList();
         return String.join(" ", capitalizedWords);
     }

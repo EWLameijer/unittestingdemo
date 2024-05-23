@@ -9,6 +9,4 @@ import lombok.Setter;
 @Setter
 public class Message {
     private String title;
-
-
 }

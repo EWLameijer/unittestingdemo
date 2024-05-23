@@ -2,7 +2,6 @@ package net.ericwubbo.unittestingdemo;
 
 import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
 @RequiredArgsConstructor
 public class MessageServiceTest {
